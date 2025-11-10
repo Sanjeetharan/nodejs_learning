@@ -1,0 +1,54 @@
+const fs= require('fs');
+
+//create a folder - mkdir
+
+if(!fs.existsSync('./docs')){ //checks whether the file exists or not
+fs.mkdir('./docs',(err)=>{
+    if(err){
+        console.log(err.message);
+    }
+    else
+    console.log('Folder created');
+})
+
+}
+
+//now create a file and then write inside it - writeFile
+fs.writeFile('./docs/newfiles.txt','writing inside the file',(err)=>{
+    if(err){
+        console.log(err.message)
+    }
+    else{
+        console.log('file created')
+    }
+})
+//read inside the created file - readFile
+if(fs.existsSync('./docs/newfiles.txt')){
+fs.readFile('./docs/newfiles.txt',(err,data)=>{
+    if(err){
+        console.log(err.message)
+    }
+    else
+        console.log(data.toString());
+})
+}
+// to delete a file - unlink
+if(fs.existsSync('./docs/newfiles.txt')){
+    fs.unlink('./docs/newfiles.txt',(err)=>{
+        if(err){
+            console.log(err.message);
+        }
+        else
+            console.log('file deleted');
+    })
+}
+//to delete a folder - rmdir
+if(fs.existsSync('./docs')){
+fs.rmdir('./docs',(err)=>{
+    if(err){
+        console.log(err.message)
+    }
+    else
+        console.log('file deleted')
+})
+}
